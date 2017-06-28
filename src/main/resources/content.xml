@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+    <bean class="springfox.documentation.swagger2.configuration.Swagger2DocumentationConfiguration" id="swagger2Config"/>
+
+
+    <bean id="item1" class="com.ex.entity.Item">
+        <constructor-arg value="Item 1"/>
+    </bean>
+
+    <bean id="item2" class="com.ex.entity.Item">
+        <constructor-arg value="Item 2"/>
+    </bean>
+
+    <bean id="item3" class="com.ex.entity.Item">
+        <constructor-arg value="Item 3"/>
+    </bean>
+
+    <bean id="newItem" class="com.ex.entity.Item" scope="prototype">
+        <constructor-arg value="New Item"/>
+    </bean>
+
+
+    <bean id="content" class="com.ex.entity.Content">
+        <constructor-arg>
+            <list>
+                <ref bean="item1"/>
+                <ref bean="item2"/>
+                <ref bean="item3"/>
+            </list>
+        </constructor-arg>
+        <constructor-arg value="Item list"/>
+    </bean>
+
+    <bean id="contentService" class="com.ex.service.impl.ContentServiceImpl">
+        <lookup-method name="getNewItem" bean="newItem"/>
+    </bean>
+
+
+
+
+
+</beans>
